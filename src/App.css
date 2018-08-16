@@ -26,3 +26,80 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+/*Style for sticky footer*/
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 120px;
+}
+
+footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  line-height: 60px;
+  background-color: #218838;
+  color: white;
+  text-align: center;
+}
+
+footer a {
+  color: inherit;
+}
+
+input {
+  border: thin solid #D6DBE0;
+  border-radius: 5px;
+  padding: 6px 0 6px 10px;
+  margin: 0 5px 0 -10px;
+  color: #908181;
+  max-height: 37px;
+}
+
+table{
+  /*table-layout: fixed;*/
+}
+
+th, td {
+  text-transform: lowercase;
+  /*max-width: 75px;*/
+
+}
+
+th::first-letter, td::first-letter {
+  text-transform: capitalize;
+}
+
+#submit-workout{
+  margin: 12px 0 20px 0;
+}
+
+.update {
+  margin-left: auto;
+}
+
+.update-button{
+  max-width: 100px;
+}
+
+.blank-th{
+  width: 20px;
+}
+
+.update-check-box{
+  text-transform: initial;
+  min-width: 30px;
+}
+
+.form-control{
+  margin: 10px 0 10px 0 !important;
+}
+
+.lbs-form-radio{
+  min-width: 120px;
+}
