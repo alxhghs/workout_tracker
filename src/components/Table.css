@@ -1,0 +1,11 @@
+th, td {
+    text-transform: lowercase;
+}
+
+th::first-letter, td::first-letter {
+    text-transform: capitalize;
+}
+
+.blank-th{
+    width: 20px;
+}

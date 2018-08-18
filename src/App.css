@@ -1,56 +1,4 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/*Style for sticky footer*/
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 120px;
-}
-
-footer{
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: auto;
-  line-height: 60px;
-  background-color: #218838;
-  color: white;
-  text-align: center;
-}
-
-footer a {
-  color: inherit;
-}
+/*CSS for update fields*/
 
 input {
   border: thin solid #D6DBE0;
@@ -59,20 +7,6 @@ input {
   margin: 0 5px 0 -10px;
   color: #908181;
   max-height: 37px;
-}
-
-table{
-  /*table-layout: fixed;*/
-}
-
-th, td {
-  text-transform: lowercase;
-  /*max-width: 75px;*/
-
-}
-
-th::first-letter, td::first-letter {
-  text-transform: capitalize;
 }
 
 #submit-workout{
@@ -85,10 +19,6 @@ th::first-letter, td::first-letter {
 
 .update-button{
   max-width: 100px;
-}
-
-.blank-th{
-  width: 20px;
 }
 
 .update-check-box{

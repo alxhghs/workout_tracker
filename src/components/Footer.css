@@ -1,0 +1,23 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 120px;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    line-height: 60px;
+    background-color: #218838;
+    color: white;
+    text-align: center;
+}
+
+footer a {
+    color: inherit;
+}
