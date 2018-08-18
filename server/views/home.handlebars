@@ -1,0 +1,76 @@
+<nav class="navbar navbar-dark bg-primary">
+  <div class="container">
+    <a href="/" class="navbar-brand"></a>
+    <form class="form-inline my-2 my-lg-0">
+      <button class="btn btn-danger" type="submit" value="Reset Table" id="reset">Reset</button>
+    </form>
+  </div>
+</nav>
+
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>Simple Workouts Tracker</h1>
+  </div>
+</div>
+
+<div class="container">
+
+  <div role="alert"><h3 id="update"></h3></div>
+
+
+  <h2>Add Entry</h2>
+
+    <form>
+      <form class="form-group">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <input class="form-control workout-fields" type="text" name="name" id="name" value="" autocomplete="off" placeholder="Workout">
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <input class="form-control workout-fields" type="date" name="date" id="date" value="" autocomplete="off" placeholder="mm/dd/yyyy">
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <input class="form-control workout-fields" type="text" name="reps" id="reps" value="" autocomplete="off" placeholder="Reps">
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+            <input class="form-control workout-fields" type="text" name="weight" id="weight" value="" autocomplete="off" placeholder="Weight">
+          </div>
+          <div class="form-check m-4">
+            <input type="radio" name="lbsCheck" id="lbs" class="form-check-input" value="1" checked>
+            <label class="form-check-label" for="lbs">
+              Lbs
+            </label>
+          </div>
+          <div class="form-check m-4">
+            <input type="radio" name="lbsCheck" id="lbs" class="form-check-input" value="0">
+            <label class="form-check-label" for="kg">
+              Kg
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <input class="btn btn-success" type="submit" id="submit-workout">
+          </div>
+        </div>
+      </form>
+    </form>
+
+  <div class="row">
+    <div class="col">
+      <table class="table" id="workouts-table"></table>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p><a href="http://www.alxhghs.com">Alex Hughes</a> | CS290</p>
+</footer>
+
+<!--Bootstrap-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!--Custom Script-->
+<script src="/script.js"></script>
