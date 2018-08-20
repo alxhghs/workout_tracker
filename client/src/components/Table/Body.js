@@ -3,7 +3,10 @@ import RowContainer from '../../containers/RowContainer'
 
 
 const Body = (props) => {
-  const workouts = props.workouts;
+  let workouts;
+  if (props.workouts) {
+    workouts = props.workouts;
+  } else return;   // if there are no workouts, don't render any rows
   const workoutRows = workouts.map((workout, i) =>
     <RowContainer
       key={i}

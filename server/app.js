@@ -196,7 +196,8 @@ app.post('/delete', (req,res,next) => {
 });
 
 // resetTable the mysql table
-app.post('/resetTable', (req,res,next) => {
+app.post('/reset-table', (req,res,next) => {
+  res.header('Access-Control-Allow-Origin', "*");  // allow requests from different ports (used for React development)
   res.header("Content-Type", "application/json");
   mysql.pool.query("DROP TABLE IF EXISTS workouts", (err) => {
     const createString = "CREATE TABLE workouts("+

@@ -9,7 +9,7 @@ import Alert from './components/Alert'
 import Footer from './components/Footer'
 import NavBarContainer from './containers/NavBarContainer'
 import Jumbotron from './components/Jumbotron'
-import TableContainer from './containers/TableContainer'
+import Table from './components/Table/Table'
 
 
 class App extends Component {
@@ -17,7 +17,9 @@ class App extends Component {
     super(props);
     this.state = {
       updateText: 'Welcome!',
-      updateColor: 'primary'
+      updateColor: 'primary',
+      hasEntries: false,
+      entries: []
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -26,19 +28,43 @@ class App extends Component {
     e.preventDefault();
     if (text) this.setState({ updateText: text});
     if (color) this.setState({ updateColor: color});
+  };
+
+  handleResetClick = (e, text, color) => {
+    this.handleClick(e, text, color);
+    this.setState({ entries: [] });
+  };
+
+  componentDidMount() {
+    fetch('http://localhost:52451/read')
+      .then(response => response.json())
+      .then(
+        (response) => {
+          this.setState({
+            entries: response.results
+          });
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
+      .catch((error) => console.log(error))
   }
 
   render() {
     return (
       <div>
-        <NavBarContainer handleClick={this.handleClick}/>
+        <NavBarContainer handleClick={this.handleResetClick}/>
         <Jumbotron />
         <Alert
           updateText={this.state.updateText}
           updateColor={this.state.updateColor}
         />
         <AddEntry handleClick={this.handleClick}/>
-        <TableContainer handleClick={this.handleClick}/>
+        <Table
+          handleClick={this.handleClick}
+          entries={this.state.entries}
+        />
         <Footer />
       </div>
     )

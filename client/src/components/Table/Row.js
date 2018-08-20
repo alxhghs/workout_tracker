@@ -18,9 +18,9 @@ class Row extends Component {
   render() {
     const inputs = (
       <form>
-        <TextEntry placeholder='Name'/>
+        <TextEntry placeholder='Workout'/>
         <TextEntry placeholder='Reps'/>
-        <DateEntry/>
+        <DateEntry />
         <TextEntry placeholder='Weight'/>
         <RadioEntry name={'lbs'}/>
         <RadioEntry name={'kg'}/>

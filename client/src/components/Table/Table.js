@@ -16,7 +16,7 @@ const Table = (props) => {
           <table className='table' id='workouts-table'>
             <Header />
             <Body
-              workouts={props.workouts}
+              workouts={props.entries}
               handleClick={props.handleClick}
             />
           </table>
@@ -24,6 +24,6 @@ const Table = (props) => {
       </div>
     </div>
   )
-}
+};
 
 export default Table
