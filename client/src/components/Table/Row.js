@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 import Button from '../Button'
 
 
 const Row = (props) => {
   return (
     <tr>
-      <td>{props.row.name}</td>
-      <td>{props.row.reps}</td>
-      <td>{props.row.date}</td>
-      <td>{props.row.weight}</td>
-      <td>{props.row.lbs === 1 ? 'lbs' : 'kg'}</td>
+      <td>{props.name}</td>
+      <td>{props.reps}</td>
+      <td>{props.date}</td>
+      <td>{props.weight}</td>
+      <td>{props.lbs}</td>
       <td>
         <Button
           className='btn btn-primary'

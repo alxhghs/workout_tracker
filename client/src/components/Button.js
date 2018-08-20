@@ -10,7 +10,7 @@ const Button = (props) => {
     <div>
       <button
         className={props.className}
-        type={"submit"}
+        type={'submit'}
         value={props.value}
         id={props.id}>
         {props.name}

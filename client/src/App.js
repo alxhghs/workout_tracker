@@ -12,12 +12,23 @@ import Jumbotron from './components/Jumbotron'
 import TableContainer from './containers/TableContainer'
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      update: 'Welcome!',
+      updateColor: 'primary'
+    }
+  }
+
   render() {
     return (
       <div>
         <NavBar />
         <Jumbotron />
-        <Alert />
+        <Alert
+          update={this.state.update}
+          updateColor={this.state.updateColor}
+        />
         <AddEntry/>
         <TableContainer />
         <Footer />

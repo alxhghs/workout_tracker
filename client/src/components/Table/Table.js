@@ -11,9 +11,9 @@ import Body from './Body'
 const Table = (props) => {
   return (
     <div className='container'>
-      <div className="row">
-        <div className="col table-scroll">
-          <table className="table" id="workouts-table">
+      <div className='row'>
+        <div className='col table-scroll'>
+          <table className='table' id='workouts-table'>
             <Header />
             <Body workouts={props.workouts}/>
           </table>

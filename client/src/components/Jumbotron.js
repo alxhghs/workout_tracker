@@ -7,8 +7,8 @@ import React from 'react'
 
 const Jumbotron = () => {
   return (
-    <div className={"jumbotron"}>
-      <div className={"container text-center"}>
+    <div className={'jumbotron'}>
+      <div className={'container text-center'}>
         <h1>Simple Workouts Tracker</h1>
       </div>
     </div>

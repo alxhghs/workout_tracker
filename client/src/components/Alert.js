@@ -5,14 +5,14 @@
 import React from 'react'
 
 
-const Alert = () => {
+const Alert = (props) => {
   return (
-    <div className="container">
-      <div role="alert">
+    <div className='container'>
+      <div role='alert'>
         <h3
-          id={"update"}
-          className={"alert alert-primary text-center"}
-        >Welcome!
+          id='update'
+          className={`alert alert-${props.updateColor} text-center`}
+        >{props.update}
         </h3>
       </div>
     </div>

@@ -3,19 +3,19 @@
  */
 
 import React from 'react'
-import Button from "./Button";
+import Button from './Button';
 
 
 const NavBar = () => {
   return (
-    <nav className={"navbar navbar-dark bg-primary"}>
-      <div className={"container d-flex justify-content-end"}>
-        <form className={"form-inline my-2 my-lg-0"}>
+    <nav className={'navbar navbar-dark bg-primary'}>
+      <div className={'container d-flex justify-content-end'}>
+        <form className={'form-inline my-2 my-lg-0'}>
           <Button
-            className="btn btn-danger"
-            value="Reset Table"
-            id="reset"
-            name="Reset"
+            className='btn btn-danger'
+            value='Reset Table'
+            id='reset'
+            name='Reset'
           />
         </form>
       </div>

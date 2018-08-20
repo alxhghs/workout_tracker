@@ -1,4 +1,4 @@
-import React, {Component}  from "react";
+import React, {Component}  from 'react';
 import Table from '../components/Table/Table'
 
 class TableContainer extends Component {
@@ -6,7 +6,6 @@ class TableContainer extends Component {
     super(props);
     this.state = {
       error: null,
-      isLoaded: false,
       workouts: [],
     };
   }
@@ -17,13 +16,11 @@ class TableContainer extends Component {
       .then(
         (response) => {
           this.setState({
-            isLoaded: true,
             workouts: response.results
           });
         },
         (error) => {
           this.setState({
-            isLoaded: true,
             error
           });
         }
