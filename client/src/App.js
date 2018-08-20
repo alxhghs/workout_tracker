@@ -3,15 +3,13 @@
  */
 
 import React, { Component } from 'react';
-
 import './App.css';
-
-import AddEntry from './components/TextEntry'
+import AddEntry from './components/AddEntry/AddEntry'
 import Alert from './components/Alert'
 import Footer from './components/Footer'
 import NavBar from './components/NavBar'
 import Jumbotron from './components/Jumbotron'
-import Table from './components/Table'
+import TableContainer from './containers/TableContainer'
 
 class App extends Component {
   render() {
@@ -21,7 +19,7 @@ class App extends Component {
         <Jumbotron />
         <Alert />
         <AddEntry/>
-        <Table />
+        <TableContainer />
         <Footer />
       </div>
     )

@@ -9,3 +9,7 @@ th::first-letter, td::first-letter {
 .blank-th{
     width: 20px;
 }
+
+.table-scroll{
+    overflow-x: scroll;
+}

@@ -217,7 +217,7 @@ app.post('/resetTable', (req,res,next) => {
         next(err);
         return;
       }
-      res.send(JSON.stringify({"status": 200, "update": "Table reset"}));
+      res.send(JSON.stringify({"status": 200, "update": "TableContainer reset"}));
     });
   });
 });
