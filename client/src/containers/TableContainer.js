@@ -28,7 +28,12 @@ class TableContainer extends Component {
   }
 
   render() {
-    return <Table workouts={this.state.workouts} />
+    return (
+      <Table
+        workouts={this.state.workouts}
+        handleClick={this.props.handleClick}
+      />
+    )
   }
 }
 

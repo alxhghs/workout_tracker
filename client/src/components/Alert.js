@@ -12,7 +12,7 @@ const Alert = (props) => {
         <h3
           id='update'
           className={`alert alert-${props.updateColor} text-center`}
-        >{props.update}
+        >{props.updateText}
         </h3>
       </div>
     </div>

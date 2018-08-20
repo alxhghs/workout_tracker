@@ -10,6 +10,7 @@ const RadioEntry = (props) => {
         id={props.name}
         value={props.value}
         autoComplete='off'
+        checked={props.checked}
       />
       <label
         className='form-check-label'

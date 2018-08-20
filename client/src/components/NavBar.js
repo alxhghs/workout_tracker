@@ -3,10 +3,16 @@
  */
 
 import React from 'react'
-import Button from './Button';
+import Button from './Button'
 
 
-const NavBar = () => {
+const NavBar = (props) => {
+  const handleClick = (e) => {
+    const text = 'Table reset';
+    const color = 'danger';
+    props.handleClick(e, text, color);
+  };
+
   return (
     <nav className={'navbar navbar-dark bg-primary'}>
       <div className={'container d-flex justify-content-end'}>
@@ -16,6 +22,7 @@ const NavBar = () => {
             value='Reset Table'
             id='reset'
             name='Reset'
+            handleClick={handleClick}
           />
         </form>
       </div>

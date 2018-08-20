@@ -1,9 +1,16 @@
 import React from 'react';
 import Button from '../Button';
+import DateEntry from './DateEntry'
 import RadioEntry from './RadioEntry'
 import TextEntry from './TextEntry'
 
-const AddEntry = () => {
+const AddEntry = (props) => {
+  const handleClick = (e) => {
+    const text = 'Entry added';
+    const color = 'success';
+    props.handleClick(e, text, color);
+  };
+
   return (
     <div className='container'>
       <h2>Add Entry</h2>
@@ -13,7 +20,7 @@ const AddEntry = () => {
             name='name'
             value=''
             placeholder='Workout' />
-          <TextEntry
+          <DateEntry
             name='date'
             value=''
             placeholder='Date' />
@@ -28,12 +35,12 @@ const AddEntry = () => {
           <RadioEntry
             name='lbs'
             value='1'
-            checked='true'
+            checked={true}
           />
           <RadioEntry
             name='kg'
             value='0'
-            checked='false'
+            checked={false}
           />
         </div>
         <div className='row'>
@@ -42,7 +49,9 @@ const AddEntry = () => {
               className='btn btn-success'
               type='submit'
               id='submit-workout'
-              name='Submit'>
+              name='Submit'
+              handleClick={handleClick}
+              >
             </Button>
           </div>
         </div>

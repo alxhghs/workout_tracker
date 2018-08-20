@@ -1,23 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Button from '../Button'
+import Modal from '../Modal'
 
 
-const Row = (props) => {
-  return (
-    <tr>
-      <td>{props.name}</td>
-      <td>{props.reps}</td>
-      <td>{props.date}</td>
-      <td>{props.weight}</td>
-      <td>{props.lbs}</td>
-      <td>
-        <Button
-          className='btn btn-primary'
-          name='Update'
-        />
-      </td>
-    </tr>
-  )
+class Row extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showModal: false,
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick = (e) => {
+    const text = 'Entry updated';
+    const color = 'primary';
+    this.props.handleClick(e, text, color);
+    this.setState( { showModal: true });
+  };
+
+  render() {
+    return (
+      <tr>
+        <td>{this.props.name}</td>
+        <td>{this.props.reps}</td>
+        <td>{this.props.date}</td>
+        <td>{this.props.weight}</td>
+        <td>{this.props.lbs}</td>
+        <td>
+          <Modal
+            id='update-workout'
+            name='Update'
+            handleClick={this.handleClick}
+          />
+        </td>
+      </tr>
+    )
+  }
 }
 
 export default Row
