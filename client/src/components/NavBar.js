@@ -3,10 +3,10 @@
  */
 
 import React from 'react'
-import Button from './Button';
+import Button from './Button'
 
 
-const NavBar = () => {
+const NavBar = (props) => {
   return (
     <nav className={'navbar navbar-dark bg-primary'}>
       <div className={'container d-flex justify-content-end'}>
@@ -16,6 +16,7 @@ const NavBar = () => {
             value='Reset Table'
             id='reset'
             name='Reset'
+            handleClick={props.handleClick}
           />
         </form>
       </div>

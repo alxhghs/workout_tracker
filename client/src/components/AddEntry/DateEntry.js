@@ -1,11 +1,11 @@
 import React from 'react';
 
-const TextEntry = (props) => {
+const DateEntry = (props) => {
   return (
     <div className='col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-3'>
       <input
         className='form-control workout-fields'
-        type='text'
+        type='date'
         name={props.name}
         id={props.name}
         autoComplete='off'
@@ -15,4 +15,4 @@ const TextEntry = (props) => {
   )
 }
 
-export default TextEntry
+export default DateEntry

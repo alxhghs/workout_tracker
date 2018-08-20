@@ -13,3 +13,7 @@ th::first-letter, td::first-letter {
 .table-scroll{
     overflow-x: scroll;
 }
+
+table {
+    min-width: 530px;
+}

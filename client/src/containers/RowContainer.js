@@ -33,6 +33,7 @@ class RowContainer extends Component {
         date={RowContainer.formatDate(row.date)}
         weight={RowContainer.formatNum(row.weight)}
         lbs={RowContainer.formatUnit(row.lbs)}
+        handleClick={this.props.handleClick}
       />
     )
   }

@@ -15,7 +15,10 @@ const Table = (props) => {
         <div className='col table-scroll'>
           <table className='table' id='workouts-table'>
             <Header />
-            <Body workouts={props.workouts}/>
+            <Body
+              workouts={props.workouts}
+              handleClick={props.handleClick}
+            />
           </table>
         </div>
       </div>

@@ -10,9 +10,14 @@ const Button = (props) => {
     <div>
       <button
         className={props.className}
-        type={'submit'}
+        type={props.type}
         value={props.value}
-        id={props.id}>
+        id={props.id}
+        onClick={props.handleClick}
+        data-toggle={props.dataToggle}
+        data-target={props.dataTarget}
+        data-dismiss={props.dataDismiss}
+        >
         {props.name}
       </button>
     </div>

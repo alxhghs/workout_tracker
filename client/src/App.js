@@ -2,35 +2,43 @@
  * Used to render all of the components for the application
  */
 
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
 import AddEntry from './components/AddEntry/AddEntry'
 import Alert from './components/Alert'
 import Footer from './components/Footer'
-import NavBar from './components/NavBar'
+import NavBarContainer from './containers/NavBarContainer'
 import Jumbotron from './components/Jumbotron'
 import TableContainer from './containers/TableContainer'
+
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      update: 'Welcome!',
+      updateText: 'Welcome!',
       updateColor: 'primary'
-    }
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick = (e, text, color) => {
+    e.preventDefault();
+    if (text) this.setState({ updateText: text});
+    if (color) this.setState({ updateColor: color});
   }
 
   render() {
     return (
       <div>
-        <NavBar />
+        <NavBarContainer handleClick={this.handleClick}/>
         <Jumbotron />
         <Alert
-          update={this.state.update}
+          updateText={this.state.updateText}
           updateColor={this.state.updateColor}
         />
-        <AddEntry/>
-        <TableContainer />
+        <AddEntry handleClick={this.handleClick}/>
+        <TableContainer handleClick={this.handleClick}/>
         <Footer />
       </div>
     )
