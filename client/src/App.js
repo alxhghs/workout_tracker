@@ -4,12 +4,12 @@
 
 import React, { Component } from 'react'
 import './App.css'
-import AddEntry from './components/AddEntry/AddEntry'
-import Alert from './components/Alert'
-import Footer from './components/Footer'
+import AddEntry        from './components/AddEntry/AddEntry'
+import Alert           from './components/Alert'
+import Footer          from './components/Footer'
+import Jumbotron       from './components/Jumbotron'
 import NavBarContainer from './containers/NavBarContainer'
-import Jumbotron from './components/Jumbotron'
-import Table from './components/Table/Table'
+import Table           from './components/Table/Table'
 
 
 class App extends Component {
