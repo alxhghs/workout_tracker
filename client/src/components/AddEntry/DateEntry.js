@@ -10,6 +10,7 @@ const DateEntry = (props) => {
         id={props.name}
         autoComplete='off'
         placeholder={props.placeholder}
+        onChange={props.onChange}
       />
     </div>
   )

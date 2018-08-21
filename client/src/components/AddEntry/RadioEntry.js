@@ -11,6 +11,7 @@ const RadioEntry = (props) => {
         value={props.value}
         autoComplete='off'
         checked={props.checked}
+        onChange={props.onChange}
       />
       <label
         className='form-check-label'

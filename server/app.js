@@ -23,6 +23,12 @@ app.set('view engine', 'handlebars');
 app.set('port', 52451);
 app.use(express.static('public'));
 
+app.use((req,res,next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  next();
+});
+
 app.get('/', (req,res,next) => {
   let context = {};
   request.get(`http://localhost:${app.get('port')}/read`, (err, response, body) => {
@@ -37,7 +43,6 @@ app.get('/', (req,res,next) => {
 
 // display all items in the database
 app.get('/read', (req,res,next) => {
-  res.header('Access-Control-Allow-Origin', "*");  // allow requests from different ports (used for React development)
   mysql.pool.query("SELECT * FROM workouts", (err,results,fields) => {
     res.header("Content-Type", "application/json");
     if(err){
@@ -69,9 +74,9 @@ app.get('/read-id', (req,res,next) => {
 
 // take a post request to add a new item to the database
 app.post('/create', (req,res,next) => {
-  res.header('Access-Control-Allow-Origin', "*");  // allow requests from different ports (used for React development)
   res.header("Content-Type", "application/json");
-
+  console.log('printing body:');
+  console.log(JSON.stringify(req.body));
   if (req.body['name'] === "" || req.body['name'] === undefined) {  // empty name field, do nothing
     res.status(500).send(JSON.stringify({"status": 500, "error": "Workout name required"}));
     return;
@@ -84,11 +89,13 @@ app.post('/create', (req,res,next) => {
   values.push(req.body.weight || "");
   values.push(req.body.date   || "");
   values.push(req.body.lbs    || "");
+  console.log(JSON.stringify(values));
 
   const sql = "INSERT INTO `workouts` (`name`, `reps`, `weight`, `date`, `lbs`) VALUES (?);";
   mysql.pool.query(sql, [values], (err, results) => {
     if (err) {
       res.status(500).send(JSON.stringify({"status": 500, "error": err}));
+      console.log(err);
       next(err);
       return;
     }

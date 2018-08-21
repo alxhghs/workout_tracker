@@ -12,29 +12,34 @@ const AddEntry = (props) => {
         <div className='row'>
           <TextEntry
             name='name'
-            value=''
-            placeholder='Workout' />
+            placeholder='Workout'
+            onChange={props.handleInputChange}
+          />
           <DateEntry
             name='date'
-            value=''
-            placeholder='Date' />
+            placeholder='Date'
+            onChange={props.handleInputChange}
+          />
           <TextEntry
             name='reps'
-            value=''
-            placeholder='Reps' />
+            placeholder='Reps'
+            onChange={props.handleInputChange}
+          />
           <TextEntry
             name='weight'
-            value=''
-            placeholder='Weight' />
+            placeholder='Weight'
+            onChange={props.handleInputChange}
+          />
           <RadioEntry
             name='lbs'
             value='1'
             // checked={true}
+            onChange={props.handleInputChange}
           />
           <RadioEntry
             name='kg'
             value='0'
-            // checked={false}
+            onChange={props.handleInputChange}
           />
         </div>
         <div className='row'>
@@ -44,6 +49,7 @@ const AddEntry = (props) => {
               type='submit'
               id='submit-workout'
               name='Submit'
+              handleSubmit={props.handleSubmit}
               >
             </Button>
           </div>

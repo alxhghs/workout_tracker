@@ -1,50 +1,60 @@
 import React, { Component } from 'react'
+import $ from 'jquery'
 import AddEntry from '../components/AddEntry/AddEntry'
 
 
 class AddEntryContainer extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      name: '',
+      reps: '',
+      weight: '',
+      date: '',
+      lbs: ''
+    }
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   handleSubmit(e) {
     e.persist();
     e.preventDefault();
-    const data = new FormData(e.target);
+    const data = {
+      'name'  : this.state.name,
+      'reps'  : this.state.reps,
+      'weight': this.state.weight,
+      'date'  : this.state.date,
+      'lbs'   : this.state.lbs
+    };
+    console.log(JSON.stringify(data));
 
-    fetch(`http://localhost:${this.props.port}/create`,
-      {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers:{
-          'Content-Type': 'text/plain'
-        }
-      })
-      .then(
-        (response) => {
-          let text, color;
-          if (response.status >= 200 && response.status < 400) {
-            text = 'Entry added';
-          } else {
-            text = response.error;
-          }
-          color = 'success';
-          // this.props.handleClick(e, text, color);
-          return response;
-        },
-        (error) => {
-          const text = error;
-          const color = 'danger';
-          // this.props.handleClick(e, text, color)
-        })
+    $.post({
+      url: 'http://localhost:52451/create',
+      type: 'POST',
+      dataType: 'application/json',
+      data: data
+    })
+
   };
+
+  handleInputChange(e) {
+    const target = e.target;
+    const value = target.type === 'checkbox' ?
+      target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    })
+  }
 
   render() {
     return (
       <AddEntry
         handleSubmit={this.handleSubmit}
         handleClick={this.props.handleClick}
+        handleInputChange={this.handleInputChange}
       />
     )
   }
