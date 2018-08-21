@@ -93,8 +93,6 @@ app.get('/read-recent', (req,res,next) => {
 // take a post request to add a new item to the database
 app.post('/create', (req,res,next) => {
   res.header("Content-Type", "application/json");
-  console.log('printing body:');
-  console.log(JSON.stringify(req.body));
   if (req.body['name'] === "" || req.body['name'] === undefined) {  // empty name field, do nothing
     res.status(500).send(JSON.stringify({"status": 500, "error": "Workout name required"}));
     return;
@@ -107,7 +105,6 @@ app.post('/create', (req,res,next) => {
   values.push(req.body.weight || "");
   values.push(req.body.date   || "");
   values.push(req.body.lbs    || "");
-  console.log(JSON.stringify(values));
 
   const sql = "INSERT INTO `workouts` (`name`, `reps`, `weight`, `date`, `lbs`) VALUES (?);";
   mysql.pool.query(sql, [values], (err, results) => {

@@ -48,8 +48,9 @@ class AddEntryContainer extends Component {
         this.props.handleClick(e, text, color);
       })
       .then(() => fetch(`http://localhost:${this.props.port}/read-recent`))
-      .then((response) => {
-        this.props.handleAdd(e, response.results);
+      .then(response => response.json())
+      .then((data) => {
+        this.props.handleAdd(e, data.results[0]);
       })
       .catch((error) => console.log(error));
   };

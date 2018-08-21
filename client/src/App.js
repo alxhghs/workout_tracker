@@ -10,7 +10,7 @@ import Footer            from './components/Footer'
 import Jumbotron         from './components/Jumbotron'
 import NavBarContainer   from './containers/NavBarContainer'
 import Table             from './components/Table/Table'
-
+import ErrorBoundary     from './ErrorBoundary'
 
 class App extends Component {
   constructor(props) {
@@ -34,12 +34,18 @@ class App extends Component {
 
   handleResetClick = (e, text, color) => {
     this.handleClick(e, text, color);
-    this.setState({ entries: [] });
+    this.setState({
+      entries: [],
+      hasEntries: false
+    });
   };
 
   handleAdd = (e, newElement) => {
-    this.setState(prevState => {
-      return {entries: [prevState.entries + newElement]}
+    this.setState(() => {
+      return {
+        entries: [...this.state.entries, newElement],
+        hasEntries: true
+      }
     });
   };
 
@@ -77,10 +83,12 @@ class App extends Component {
           port={this.port}
           entries={this.state.entries}
         />
-        <Table
-          handleClick={this.handleClick}
-          entries={this.state.entries}
-        />
+        <ErrorBoundary>
+          <Table
+            handleClick={this.handleClick}
+            entries={this.state.entries}
+          />
+        </ErrorBoundary>
         <Footer />
       </div>
     )
