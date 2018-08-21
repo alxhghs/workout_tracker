@@ -22,6 +22,7 @@ class App extends Component {
       entries: [],
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleAdd = this.handleAdd.bind(this);
     this.port = '52451';
   }
 
@@ -34,6 +35,12 @@ class App extends Component {
   handleResetClick = (e, text, color) => {
     this.handleClick(e, text, color);
     this.setState({ entries: [] });
+  };
+
+  handleAdd = (e, newElement) => {
+    this.setState(prevState => {
+      return {entries: [prevState.entries + newElement]}
+    });
   };
 
   componentDidMount() {
@@ -66,7 +73,9 @@ class App extends Component {
         />
         <AddEntryContainer
           handleClick={this.handleClick}
+          handleAdd={this.handleAdd}
           port={this.port}
+          entries={this.state.entries}
         />
         <Table
           handleClick={this.handleClick}

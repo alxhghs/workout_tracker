@@ -14,6 +14,7 @@ const Body = (props) => {
       handleClick={props.handleClick}
     />
   );
+  console.log(workoutRows);
   return (
     <tbody>
       {workoutRows}

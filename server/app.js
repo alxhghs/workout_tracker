@@ -72,6 +72,24 @@ app.get('/read-id', (req,res,next) => {
   });
 });
 
+// display most recent item from database
+app.get('/read-recent', (req,res,next) => {
+  mysql.pool.query("SELECT * FROM workouts ORDER BY id DESC LIMIT 0,1", [req.query.id], (err,result,fields) => {
+    res.header("Content-Type", "application/JSON");
+    if(err){
+      res.status(500).send(JSON.stringify({"status": 500, "error": err}));
+      next(err);
+      return;
+    }
+    if(result.length !== 1){
+      res.status(500).send(JSON.stringify({"status": 500, "error": "Invalid ID"}));
+      next(err);
+      return;
+    }
+    res.send(JSON.stringify({"status": 200, "results": result}));
+  });
+});
+
 // take a post request to add a new item to the database
 app.post('/create', (req,res,next) => {
   res.header("Content-Type", "application/json");

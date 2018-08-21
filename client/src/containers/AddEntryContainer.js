@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import $ from 'jquery'
+import qs from 'qs'
 import AddEntry from '../components/AddEntry/AddEntry'
 
 
@@ -27,15 +27,31 @@ class AddEntryContainer extends Component {
       'date'  : this.state.date,
       'lbs'   : this.state.lbs
     };
-    console.log(JSON.stringify(data));
 
-    $.post({
-      url: 'http://localhost:52451/create',
-      type: 'POST',
-      dataType: 'application/json',
-      data: data
-    })
-
+    fetch('http://localhost:52451/create',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        },
+        body: qs.stringify(data)
+      })
+      .then((response) => {
+        let text, color;
+        if (response.status >= 200 && response.status < 400) {
+          text = `Added ${data.name}`;
+          color = 'success';
+        } else {
+          text = 'Invalid entry';
+          color = 'danger'
+        }
+        this.props.handleClick(e, text, color);
+      })
+      .then(() => fetch(`http://localhost:${this.props.port}/read-recent`))
+      .then((response) => {
+        this.props.handleAdd(e, response.results);
+      })
+      .catch((error) => console.log(error));
   };
 
   handleInputChange(e) {
