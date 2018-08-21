@@ -11,7 +11,8 @@ th::first-letter, td::first-letter {
 }
 
 .table-scroll{
-    overflow-x: scroll;
+    overflow-x: auto;
+    overflow-y: visible;
 }
 
 table {

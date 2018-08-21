@@ -69,6 +69,7 @@ app.get('/read-id', (req,res,next) => {
 
 // take a post request to add a new item to the database
 app.post('/create', (req,res,next) => {
+  res.header('Access-Control-Allow-Origin', "*");  // allow requests from different ports (used for React development)
   res.header("Content-Type", "application/json");
 
   if (req.body['name'] === "" || req.body['name'] === undefined) {  // empty name field, do nothing
@@ -76,7 +77,7 @@ app.post('/create', (req,res,next) => {
     return;
   }
 
-  // array to sent to mysql, if value not provided, provide an empty value (except for name, which is required)
+  // array to send to mysql, if value not provided, provide an empty value (except for name, which is required)
   let values = [];
   values.push(req.body.name);
   values.push(req.body.reps   || "");
@@ -106,6 +107,7 @@ app.post('/create', (req,res,next) => {
 
 // update contents of the database
 app.post('/update', (req,res,next) => {
+  res.header('Access-Control-Allow-Origin', "*");  // allow requests from different ports (used for React development)
   res.header("Content-Type", "application/json");
   let sql = "SELECT * FROM workouts WHERE id=?";
   // check that the ID exists to update
@@ -164,6 +166,7 @@ app.post('/update', (req,res,next) => {
 
 // delete a row
 app.post('/delete', (req,res,next) => {
+  res.header('Access-Control-Allow-Origin', "*");  // allow requests from different ports (used for React development)
   res.header("Content-Type", "application/json");
   let sql = "SELECT * FROM workouts WHERE id=?";
   mysql.pool.query(sql, [req.body.id], (err,result) => {

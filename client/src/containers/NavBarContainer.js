@@ -11,13 +11,15 @@ class NavBarContainer extends Component {
   handleClick = (e) => {
     e.persist();  // https://reactjs.org/docs/events.html#event-pooling
     e.preventDefault();
-    fetch('http://localhost:52451/reset-table', { method: 'POST'} )
+    fetch(`http://localhost:${this.props.port}/reset-table`, { method: 'POST'} )
       .then(
         (response) => {
           let text, color;
           if (response.status >= 200 && response.status < 400) {
             text = 'Table reset';
-          } else text = response.error;
+          } else {
+            text = response.error;
+          }
           color = 'danger';
           this.props.handleClick(e, text, color)
         },

@@ -5,16 +5,10 @@ import RadioEntry from './RadioEntry'
 import TextEntry from './TextEntry'
 
 const AddEntry = (props) => {
-  const handleClick = (e) => {
-    const text = 'Entry added';
-    const color = 'success';
-    props.handleClick(e, text, color);
-  };
-
   return (
     <div className='container'>
       <h2>Add Entry</h2>
-      <form>
+      <form onSubmit={props.handleSubmit}>
         <div className='row'>
           <TextEntry
             name='name'
@@ -35,12 +29,12 @@ const AddEntry = (props) => {
           <RadioEntry
             name='lbs'
             value='1'
-            checked={true}
+            // checked={true}
           />
           <RadioEntry
             name='kg'
             value='0'
-            checked={false}
+            // checked={false}
           />
         </div>
         <div className='row'>
@@ -50,7 +44,6 @@ const AddEntry = (props) => {
               type='submit'
               id='submit-workout'
               name='Submit'
-              handleClick={handleClick}
               >
             </Button>
           </div>
