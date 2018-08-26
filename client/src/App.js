@@ -54,8 +54,9 @@ class App extends Component {
       .then(response => response.json())
       .then(
         (response) => {
-          this.setState({
-            entries: response.results
+          if (response.results)
+            this.setState({
+              entries: response.results
           });
         },
         (error) => {

@@ -225,13 +225,7 @@ app.post('/reset-table', (req,res,next) => {
   res.header('Access-Control-Allow-Origin', "*");  // allow requests from different ports (used for React development)
   res.header("Content-Type", "application/json");
   mysql.pool.query("DROP TABLE IF EXISTS workouts", (err) => {
-    const createString = "CREATE TABLE workouts("+
-      "id INT PRIMARY KEY AUTO_INCREMENT,"+
-      "name VARCHAR(255) NOT NULL,"+
-      "reps INT,"+
-      "date DATE,"+
-      "weight INT,"+
-      "lbs BOOLEAN)";
+    const createString = "CREATE TABLE workouts(id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255) NOT NULL, reps INT, date DATE, weight INT, lbs BOOLEAN)";
     if (err){
       res.status(500).send(JSON.stringify({"status": 500, "error": err}));
       next(err);

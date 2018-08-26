@@ -5,7 +5,7 @@ import ErrorBoundary from "../ErrorBoundary";
 
 class RowContainer extends Component {
   static formatDate(date) {
-    if (date !== 0 && date !== '0000-00-00') {
+    if (date && date !== 0 && date !== '0000-00-00') {
       const n = date.indexOf('T');
       date = date.substring(0, n !== -1 ? n : date.length);
       if (date.substring(4, 5) === '-') {
