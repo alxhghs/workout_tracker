@@ -24,8 +24,9 @@ app.set('port', 52451);
 app.use(express.static('public'));
 
 app.use((req,res,next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.header("Content-Type", "application/JSON");
   next();
 });
 
@@ -44,7 +45,7 @@ app.get('/', (req,res,next) => {
 // display all items in the database
 app.get('/read', (req,res,next) => {
   mysql.pool.query("SELECT * FROM workouts", (err,results,fields) => {
-    res.header("Content-Type", "application/json");
+    // res.header("Content-Type", "application/json");
     if(err){
       res.status(500).send(JSON.stringify({"status": 500, "error": err}));
       next(err);
@@ -57,7 +58,7 @@ app.get('/read', (req,res,next) => {
 // display individual item from database
 app.get('/read-id', (req,res,next) => {
   mysql.pool.query("SELECT * FROM workouts WHERE id=?", [req.query.id], (err,result,fields) => {
-    res.header("Content-Type", "application/JSON");
+    // res.header("Content-Type", "application/JSON");
     if(err){
       res.status(500).send(JSON.stringify({"status": 500, "error": err}));
       next(err);
@@ -92,7 +93,7 @@ app.get('/read-recent', (req,res,next) => {
 
 // take a post request to add a new item to the database
 app.post('/create', (req,res,next) => {
-  res.header("Content-Type", "application/json");
+  // res.header("Content-Type", "application/json");
   if (req.body['name'] === "" || req.body['name'] === undefined) {  // empty name field, do nothing
     res.status(500).send(JSON.stringify({"status": 500, "error": "Workout name required"}));
     return;
@@ -129,15 +130,15 @@ app.post('/create', (req,res,next) => {
 
 // update contents of the database
 app.post('/update', (req,res,next) => {
-  res.header('Access-Control-Allow-Origin', "*");  // allow requests from different ports (used for React development)
-  res.header("Content-Type", "application/json");
+  // res.header('Access-Control-Allow-Origin', "*");  // allow requests from different ports (used for React development)
+  // res.header("Content-Type", "application/json");
   let sql = "SELECT * FROM workouts WHERE id=?";
   // check that the ID exists to update
   mysql.pool.query(sql, [req.body.id], (err, result) => {
     if(err){
       next(err);
       res.status(500).send(JSON.stringify({"status": 500, "error": err}));
-      return;null
+      return;
     }
     // check that one item was returned with the ID
     if(result.length !==1){
@@ -188,8 +189,8 @@ app.post('/update', (req,res,next) => {
 
 // delete a row
 app.post('/delete', (req,res,next) => {
-  res.header('Access-Control-Allow-Origin', "*");  // allow requests from different ports (used for React development)
-  res.header("Content-Type", "application/json");
+  // res.header('Access-Control-Allow-Origin', "*");  // allow requests from different ports (used for React development)
+  // res.header("Content-Type", "application/json");
   let sql = "SELECT * FROM workouts WHERE id=?";
   mysql.pool.query(sql, [req.body.id], (err,result) => {
     if(err){
@@ -222,8 +223,8 @@ app.post('/delete', (req,res,next) => {
 
 // resetTable the mysql table
 app.post('/reset-table', (req,res,next) => {
-  res.header('Access-Control-Allow-Origin', "*");  // allow requests from different ports (used for React development)
-  res.header("Content-Type", "application/json");
+  // res.header('Access-Control-Allow-Origin', "*");  // allow requests from different ports (used for React development)
+  // res.header("Content-Type", "application/json");
   mysql.pool.query("DROP TABLE IF EXISTS workouts", (err) => {
     const createString = "CREATE TABLE workouts(id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255) NOT NULL, reps INT, date DATE, weight INT, lbs BOOLEAN)";
     if (err){

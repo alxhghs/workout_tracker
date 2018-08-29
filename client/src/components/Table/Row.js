@@ -15,6 +15,10 @@ class Row extends Component {
     this.props.handleClick(e);
   };
 
+  componentDidMount() {
+    console.log(`Row printing id: ` + this.props.id);
+  }
+
   render() {
     const inputs = (
       <form onSubmit={this.handleSubmit}>
@@ -36,10 +40,12 @@ class Row extends Component {
         <td>{this.props.lbs}</td>
         <td>
           <Modal
-            id='update-workout'
+            id={this.props.id}
+            className='update-workout'
             name='Update'
             handleSubmit={this.handleSubmit}
             body={inputs}
+            handleDelete={this.props.handleDelete}
           />
         </td>
       </tr>

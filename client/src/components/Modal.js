@@ -7,6 +7,21 @@ import '../styles/Modal.css'
 
 
 class Modal extends Component {
+  constructor(props) {
+    super(props)
+    this.handleDelete = this.handleDelete.bind(this);
+    this.id = this.props.id;
+  }
+
+  handleDelete(e) {
+    console.log(`modal id = ${e.target.id}`);
+    this.props.handleDelete(e, e.target.id);
+  }
+
+  componentDidMount() {
+    console.log(`Modal printing id: ` + this.props.id)
+  }
+
   render() {
     return (
       <div>
@@ -45,12 +60,20 @@ class Modal extends Component {
                   data-dismiss="modal"
                   onClick={this.props.handleSubmit}
                 >Save changes</button>
+                <button
+                  id={this.props.id}
+                  type='button'
+                  className='btn btn-danger'
+                  name='Delete'
+                  data-dismiss='modal'
+                  onClick={this.handleDelete}
+                >Delete</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
