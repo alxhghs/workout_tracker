@@ -4,6 +4,7 @@
 * Fix Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
 https://github.com/mozilla/nunjucks/issues/652
 * Update modal
+* Delete function in modal
 ## Ideas
 * Data for workout history
     * Muscle groups

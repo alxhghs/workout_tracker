@@ -15,15 +15,17 @@ const Table = (props) => {
         <div className='col table-scroll'>
           <table className='table' id='workouts-table'>
             <TableHeader />
+            {/* handleClick updates alert text */}
             <TableBody
               workouts={props.entries}
               handleClick={props.handleClick}
+              handleDelete={props.handleDelete}
             />
           </table>
         </div>
       </div>
     </div>
   )
-};
+}
 
 export default Table

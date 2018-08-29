@@ -3,6 +3,7 @@ import Row from '../components/Table/Row';
 
 
 class RowContainer extends Component {
+  /* clean up date output */
   static formatDate(date) {
     if (date && date !== 0 && date !== '0000-00-00') {
       const n = date.indexOf('T');
@@ -16,25 +17,30 @@ class RowContainer extends Component {
     }
   }
 
+  /* only display numbers !== 0 */
   static formatNum(num) {
     if (num !== 0) return num;
   }
 
+  /* convert from boolean to lbs/kg */
   static formatUnit(unit) {
     return unit === 1 ? 'Lbs' : 'Kg';
   }
 
   render() {
-    const row = this.props.row;
+    const row = this.props.row;  // row === workout data (name, reps, weight etc.)
 
     return (
+      /* handleClick updates alert text */
       <Row
+        id={this.props.id}
         name={row.name}
         reps={RowContainer.formatNum(row.reps)}
         date={RowContainer.formatDate(row.date)}
         weight={RowContainer.formatNum(row.weight)}
         lbs={RowContainer.formatUnit(row.lbs)}
         handleClick={this.props.handleClick}
+        handleDelete={this.props.handleDelete}
       />
     )
   }

@@ -3,6 +3,7 @@
  */
 
 import React, { Component } from 'react'
+import qs from 'qs'
 import './App.css'
 import AddEntryContainer from './containers/AddEntryContainer'
 import Alert             from './components/Alert'
@@ -21,10 +22,23 @@ class App extends Component {
       // hasEntries: false,
       entries: [],
     };
-    // this.handleClick = this.handleClick.bind(this);
-    // this.handleAdd = this.handleAdd.bind(this);
+    this.handleAdd = this.handleAdd.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleResetClick = this.handleResetClick.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
     this.port = '52451';
   }
+
+  /* Adds a new entry to the state and thus the database */
+  handleAdd = (e, newElement) => {
+    this.setState(() => {
+      return {
+        entries: [...this.state.entries, newElement],  // all current + new (immutable state)
+        // hasEntries: true
+      }
+    });
+  };
 
   /* Updates the alert text */
   handleClick = (e, text, color) => {
@@ -42,22 +56,58 @@ class App extends Component {
     });
   };
 
-  /* Adds a new entry to the state and thus the database */
-  handleAdd = (e, newElement) => {
-    this.setState(() => {
-      return {
-        entries: [...this.state.entries, newElement],  // all current + new (immutable state)
-        // hasEntries: true
-      }
-    });
-  };
+  /* Updates an entry */
+  handleUpdate = (e, updatedElement, index) => {
+    let array = [...this.state.entries];
+    array[index] = updatedElement;        // replace element in array
+    this.setState({
+      entries: array
+    })
+  }
 
-  /* Loads the entries in the database */
+  /* Deletes entry from array */
+  handleDelete = (e, index) => {
+    e.persist();
+    // e.preventDefault();  // necessary?
+    const data = {
+      'id' : index
+    }
+
+    fetch(`http://localhost:${this.port}/delete`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        },
+        body: qs.stringify(data)
+      })
+    .then(response => {
+      let text, color;
+      if (response.status >= 200 && response.status < 400) {
+        text = 'Deleted entry';
+        color = 'danger';
+        let array = [...this.state.entries];
+        // TODO track entries id separate from database id
+        // const i =
+        array.splice(i, 1);  // remove item from index
+        this.setState({
+          entries: array
+        })
+      } else {
+        text = 'Error';
+        color = 'danger'
+      }
+      this.handleClick(e, text, color);
+    })
+    .catch(error => console.log(error));
+  }
+
+  /* Loads the entries in the database at start */
   componentDidMount() {
     fetch(`http://localhost:${this.port}/read`)
       .then(response => response.json())
       .then(
-        (response) => {
+        response => {
           if (response.results)  // if no entries, causes app to crash w/o this if statement
             this.setState({
               entries: response.results
@@ -67,7 +117,7 @@ class App extends Component {
           console.log(error);    // catch statement
         }
       )
-      .catch((error) => console.log(error))
+      .catch(error => console.log(error))
   }
 
   render() {
@@ -82,7 +132,7 @@ class App extends Component {
           updateText={this.state.updateText}
           updateColor={this.state.updateColor}
         />
-        {/* handles updating the alert */}
+        {/* handleClick handles updating the alert */}
         <AddEntryContainer
           handleAdd={this.handleAdd}
           port={this.port}
@@ -91,6 +141,7 @@ class App extends Component {
         <Table
           handleClick={this.handleClick}
           entries={this.state.entries}
+          handleDelete={this.handleDelete}
         />
         <Footer />
       </div>

@@ -4,15 +4,18 @@ import RowContainer from '../../containers/RowContainer'
 
 const TableBody = (props) => {
   let workouts;
-  if (props.workouts) {
+  if (props.workouts) {        // if there are no workouts, don't render any rows
     workouts = props.workouts
-  } else return   // if there are no workouts, don't render any rows
+  } else return
   const workoutRows = workouts.map((workout, i) =>
+    /* handleClick updates alert text */
     <RowContainer
-      key={i}
-      row={workout}
-      handleClick={props.handleClick}
-    />
+        key={i}
+        id={workout.id}
+        row={workout}
+        handleClick={props.handleClick}
+        handleDelete={props.handleDelete}
+      />
   )
 
   return (
