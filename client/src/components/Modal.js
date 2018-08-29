@@ -2,52 +2,56 @@
  * Component to render the modal for updating workouts
  */
 
-import React from 'react'
-import Button from './Button'
+import React, { Component } from 'react'
 import '../styles/Modal.css'
 
 
-const Modal = (props) => {
-  return (
-    <div>
-      <Button
-        type='button'
-        className='btn btn-primary'
-        dataToggle='modal'
-        dataTarget='#exampleModal'
-        name={props.name}
-        handleClick={props.handleClick}
-      />
-      <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">Update Workout</h5>
+class Modal extends Component {
+  render() {
+    return (
+      <div>
+        <button
+          type='button'
+          className='btn btn-primary'
+          data-toggle='modal'
+          data-target='#exampleModal'
+          name={this.props.name}
+          onClick={this.props.handleClick}
+        >{this.props.name}</button>
+        <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">Update workout</h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
-               </button>
-            </div>
-            <div className="modal-body">
-              {props.body}
-            </div>
-            <div className="modal-footer">
-              <Button
-                type="button"
-                className="btn btn-secondary"
-                dataDismiss="modal"
-                name="Close">
-              </Button>
-              <Button
-                type="button"
-                className="btn btn-primary"
-                name="Save changes">
-              </Button>
+                </button>
+              </div>
+              <div className="modal-body">
+                {this.props.body}
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-dismiss="modal"
+                  name="Close"
+                >Close</button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  name="Save changes"
+                  data-dismiss="modal"
+                  onClick={this.props.handleSubmit}
+                >Save changes</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Modal

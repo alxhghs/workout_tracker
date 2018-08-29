@@ -10,8 +10,7 @@ const Footer = () => {
   return (
     <footer>
       <p>
-        <a href='http://www.alxhghs.com/'>Alex Hughes </a>
-        | CS 290
+        <a href='http://www.alxhghs.com/'>Alex Hughes </a> | 2018
       </p>
     </footer>
   )

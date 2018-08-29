@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from '../Button';
 import DateEntry from './DateEntry'
 import RadioEntry from './RadioEntry'
 import TextEntry from './TextEntry'
@@ -32,26 +31,28 @@ const AddEntry = (props) => {
           />
           <RadioEntry
             name='lbs'
+            placeholder='Lbs'
             value='1'
-            // checked={true}
-            onChange={props.handleInputChange}
+            checked={props.lbs === '1'}
+            onChange={props.handleRadioChange}
           />
           <RadioEntry
-            name='kg'
+            name='lbs'
+            placeholder='Kg'
             value='0'
-            onChange={props.handleInputChange}
+            checked={props.lbs === '0'}
+            onChange={props.handleRadioChange}
           />
         </div>
         <div className='row'>
           <div className='col'>
-            <Button
+            <button
               className='btn btn-success'
               type='submit'
               id='submit-workout'
               name='Submit'
-              handleSubmit={props.handleSubmit}
-              >
-            </Button>
+              onClick={props.handleSubmit}
+            >Submit</button>
           </div>
         </div>
       </form>

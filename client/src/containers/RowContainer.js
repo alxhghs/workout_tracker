@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Row from '../components/Table/Row';
-import ErrorBoundary from "../ErrorBoundary";
 
 
 class RowContainer extends Component {

@@ -8,16 +8,16 @@ import RadioEntry from '../../components/AddEntry/RadioEntry'
 class Row extends Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleClick = (e) => {
+  handleSubmit = (e) => {
     this.props.handleClick(e);
   };
 
   render() {
     const inputs = (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <TextEntry placeholder='Workout'/>
         <TextEntry placeholder='Reps'/>
         <DateEntry />
@@ -38,7 +38,7 @@ class Row extends Component {
           <Modal
             id='update-workout'
             name='Update'
-            handleClick={this.handleClick}
+            handleSubmit={this.handleSubmit}
             body={inputs}
           />
         </td>

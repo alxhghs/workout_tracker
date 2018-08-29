@@ -10,6 +10,7 @@ const Jumbotron = () => {
     <div className={'jumbotron'}>
       <div className={'container text-center'}>
         <h1>Simple Workouts Tracker</h1>
+        <p>Built with React and Node</p>
       </div>
     </div>
   )

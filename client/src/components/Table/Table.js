@@ -4,8 +4,8 @@
 
 import React from 'react'
 import '../../styles/Table.css'
-import Header from './Header'
-import Body from './Body'
+import TableHeader from './TableHeader'
+import TableBody from './TableBody'
 
 
 const Table = (props) => {
@@ -14,8 +14,8 @@ const Table = (props) => {
       <div className='row'>
         <div className='col table-scroll'>
           <table className='table' id='workouts-table'>
-            <Header />
-            <Body
+            <TableHeader />
+            <TableBody
               workouts={props.entries}
               handleClick={props.handleClick}
             />

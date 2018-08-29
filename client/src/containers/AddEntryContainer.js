@@ -11,30 +11,31 @@ class AddEntryContainer extends Component {
       reps: '',
       weight: '',
       date: '',
-      lbs: ''
+      lbs: '1',
     }
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit      = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleRadioChange = this.handleRadioChange.bind(this);
   }
 
   handleSubmit(e) {
     e.persist();
     e.preventDefault();
     const data = {
-      'name'  : this.state.name,
-      'reps'  : this.state.reps,
-      'weight': this.state.weight,
-      'date'  : this.state.date,
-      'lbs'   : this.state.lbs
+      'name'   : this.state.name,
+      'reps'   : this.state.reps,
+      'weight' : this.state.weight,
+      'date'   : this.state.date,
+      'lbs'    : this.state.lbs,
     };
 
-    fetch('http://localhost:52451/create',
+    fetch(`http://localhost:${this.props.port}/create`,
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         },
-        body: qs.stringify(data)
+        body: qs.stringify(data)  // had issues with data using JSON.stringify, qs fixed it
       })
       .then((response) => {
         let text, color;
@@ -49,7 +50,7 @@ class AddEntryContainer extends Component {
       })
       .then(() => fetch(`http://localhost:${this.props.port}/read-recent`))
       .then(response => response.json())
-      .then((data) => {
+      .then(data => {
         this.props.handleAdd(e, data.results[0]);
       })
       .catch((error) => console.log(error));
@@ -57,13 +58,17 @@ class AddEntryContainer extends Component {
 
   handleInputChange(e) {
     const target = e.target;
-    const value = target.type === 'checkbox' ?
-      target.checked : target.value;
+    const value = target.value;
     const name = target.name;
-
     this.setState({
       [name]: value
-    })
+    });
+  }
+
+  handleRadioChange(e) {
+    this.setState({
+      'lbs': e.target.value
+    });
   }
 
   render() {
@@ -72,6 +77,8 @@ class AddEntryContainer extends Component {
         handleSubmit={this.handleSubmit}
         handleClick={this.props.handleClick}
         handleInputChange={this.handleInputChange}
+        lbs={this.state.lbs}
+        handleRadioChange={this.handleRadioChange}
       />
     )
   }

@@ -2,26 +2,27 @@
  * Helper component to render buttons
  */
 
-import React from 'react'
+import React, {Component} from 'react';
 
-
-const Button = (props) => {
-  return (
-    <div>
-      <button
-        className={props.className}
-        type={props.type}
-        value={props.value}
-        id={props.id}
-        onClick={props.handleClick}
-        data-toggle={props.dataToggle}
-        data-target={props.dataTarget}
-        data-dismiss={props.dataDismiss}
+class Button extends Component {
+  render() {
+    return (
+      <div>
+        <button
+          className={this.props.className}
+          type={this.props.type}
+          value={this.props.value}
+          id={this.props.id}
+          onClick={this.props.handleClick}
+          data-toggle={this.props.dataToggle}
+          data-target={this.props.dataTarget}
+          data-dismiss={this.props.dataDismiss}
         >
-        {props.name}
-      </button>
-    </div>
-  )
+          {this.props.name}
+        </button>
+      </div>
+    )
+  }
 }
 
 export default Button

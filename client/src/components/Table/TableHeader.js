@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Header = () => {
+const TableHeader = () => {
   return (
     <thead className='thead-light'>
       <tr>
@@ -15,4 +15,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default TableHeader

@@ -101,10 +101,10 @@ app.post('/create', (req,res,next) => {
   // array to send to mysql, if value not provided, provide an empty value (except for name, which is required)
   let values = [];
   values.push(req.body.name);
-  values.push(req.body.reps   || "");
-  values.push(req.body.weight || "");
-  values.push(req.body.date   || "");
-  values.push(req.body.lbs    || "");
+  values.push(req.body.reps   || null);
+  values.push(req.body.weight || null);
+  values.push(req.body.date   || null);
+  values.push(req.body.lbs    || null);
 
   const sql = "INSERT INTO `workouts` (`name`, `reps`, `weight`, `date`, `lbs`) VALUES (?);";
   mysql.pool.query(sql, [values], (err, results) => {
@@ -137,7 +137,7 @@ app.post('/update', (req,res,next) => {
     if(err){
       next(err);
       res.status(500).send(JSON.stringify({"status": 500, "error": err}));
-      return;
+      return;null
     }
     // check that one item was returned with the ID
     if(result.length !==1){

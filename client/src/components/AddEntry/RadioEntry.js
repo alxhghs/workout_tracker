@@ -7,6 +7,7 @@ const RadioEntry = (props) => {
         className='form-check-input'
         type='radio'
         name={props.name}
+        placeholder={props.placeholder}
         id={props.name}
         value={props.value}
         autoComplete='off'
@@ -16,7 +17,7 @@ const RadioEntry = (props) => {
       <label
         className='form-check-label'
         htmlFor={props.name}
-      >{props.name.charAt(0).toUpperCase() + props.name.substr(1)}
+      >{props.placeholder}
       </label>
     </div>
   )
