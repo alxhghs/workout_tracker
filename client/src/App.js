@@ -86,6 +86,7 @@ class App extends Component {
         <AddEntryContainer
           handleAdd={this.handleAdd}
           port={this.port}
+          handleClick={this.handleClick}
         />
         <Table
           handleClick={this.handleClick}
