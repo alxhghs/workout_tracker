@@ -16,7 +16,7 @@ class Row extends Component {
   };
 
   componentDidMount() {
-    console.log(`Row printing id: ` + this.props.id);
+    console.log(`Row printing id: ` + this.props.databaseID);
   }
 
   render() {
@@ -40,7 +40,8 @@ class Row extends Component {
         <td>{this.props.lbs}</td>
         <td>
           <Modal
-            id={this.props.id}
+            entriesID={this.props.entriesID}
+            databaseID={this.props.databaseID}
             className='update-workout'
             name='Update'
             handleSubmit={this.handleSubmit}

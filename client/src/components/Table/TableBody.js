@@ -9,9 +9,11 @@ const TableBody = (props) => {
   } else return
   const workoutRows = workouts.map((workout, i) =>
     /* handleClick updates alert text */
+    // can we use the key to delete from state?
     <RowContainer
         key={i}
-        id={workout.id}
+        entriesID={i}
+        databaseID={workout.id}
         row={workout}
         handleClick={props.handleClick}
         handleDelete={props.handleDelete}

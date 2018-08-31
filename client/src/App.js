@@ -66,11 +66,14 @@ class App extends Component {
   }
 
   /* Deletes entry from array */
-  handleDelete = (e, index) => {
+  /* index = index in database
+  /* key = key for state.entries
+   */
+  handleDelete = (e, databaseID, entriesID) => {
     e.persist();
     // e.preventDefault();  // necessary?
     const data = {
-      'id' : index
+      'id' : databaseID
     }
 
     fetch(`http://localhost:${this.port}/delete`,
@@ -87,9 +90,7 @@ class App extends Component {
         text = 'Deleted entry';
         color = 'danger';
         let array = [...this.state.entries];
-        // TODO track entries id separate from database id
-        // const i =
-        array.splice(i, 1);  // remove item from index
+        array.splice(entriesID, 1);  // remove item from index
         this.setState({
           entries: array
         })

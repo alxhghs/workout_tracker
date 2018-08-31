@@ -33,7 +33,8 @@ class RowContainer extends Component {
     return (
       /* handleClick updates alert text */
       <Row
-        id={this.props.id}
+        entriesID={this.props.entriesID}
+        databaseID={this.props.databaseID}
         name={row.name}
         reps={RowContainer.formatNum(row.reps)}
         date={RowContainer.formatDate(row.date)}

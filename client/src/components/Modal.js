@@ -10,16 +10,19 @@ class Modal extends Component {
   constructor(props) {
     super(props)
     this.handleDelete = this.handleDelete.bind(this);
-    this.id = this.props.id;
   }
 
+  /* entriesID = value; databaseID = id */
   handleDelete(e) {
-    console.log(`modal id = ${e.target.id}`);
-    this.props.handleDelete(e, e.target.id);
+    // console.log(`modal id = ${e.target.id}`);
+    // this.props.handleDelete(e, e.target.id);
+    console.log(`modal id = ${e.target.value}`);
+    this.props.handleDelete(e, e.target.id, e.target.value);
   }
 
   componentDidMount() {
-    console.log(`Modal printing id: ` + this.props.id)
+    console.log(`Modal printing id: ` + this.props.databaseID)
+    console.log(`Modal printing key: ` + this.props.entriesID)
   }
 
   render() {
@@ -33,6 +36,10 @@ class Modal extends Component {
           name={this.props.name}
           onClick={this.props.handleClick}
         >{this.props.name}</button>
+
+        {/*TODO map a modal for each button*/}
+
+
         <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
           <div className="modal-dialog" role="document">
@@ -61,7 +68,8 @@ class Modal extends Component {
                   onClick={this.props.handleSubmit}
                 >Save changes</button>
                 <button
-                  id={this.props.id}
+                  id={this.props.databaseID}
+                  value={this.props.entriesID}
                   type='button'
                   className='btn btn-danger'
                   name='Delete'
