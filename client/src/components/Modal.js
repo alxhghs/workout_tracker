@@ -32,7 +32,7 @@ class Modal extends Component {
           type='button'
           className='btn btn-primary'
           data-toggle='modal'
-          data-target='#exampleModal'
+          data-target={`#modal-${this.props.entriesID}`}
           name={this.props.name}
           onClick={this.props.handleClick}
         >{this.props.name}</button>
@@ -40,12 +40,12 @@ class Modal extends Component {
         {/*TODO map a modal for each button*/}
 
 
-        <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <div className="modal fade" id={`modal-${this.props.entriesID}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">Update workout</h5>
+                <h5 className="modal-title" id={`modal-label-${this.props.entriesID}`}>Update workout</h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
